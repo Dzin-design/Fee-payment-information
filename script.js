@@ -23,6 +23,6 @@ function update(){
  const show=[Y,M,L,...COUNT,...MONEY,TC,TM].filter((x,i,a)=>x&&a.indexOf(x)===i);
  document.getElementById('table').innerHTML='<thead><tr>'+show.map(x=>'<th>'+x+'</th>').join('')+'</tr></thead><tbody>'+r.map(x=>'<tr>'+show.map(k=>'<td>'+(typeof x[k]==='number'?fmt(x[k]):(x[k]??''))+'</td>').join('')+'</tr>').join('')+'</tbody>';
 }
-fetch('data/data.json').then(x=>x.json()).then(j=>{data=j;fill('year',unique(Y));fill('month',unique(M));fill('law',unique(L));update()}).catch(e=>alert('โหลดข้อมูลไม่ได้: '+e));
+fetch('data.json').then(x=>x.json()).then(j=>{data=j;fill('year',unique(Y));fill('month',unique(M));fill('law',unique(L));update()}).catch(e=>alert('โหลดข้อมูลไม่ได้: '+e));
 ['year','month','law'].forEach(id=>document.getElementById(id).onchange=update);
 document.getElementById('reset').onclick=()=>{['year','month','law'].forEach(id=>document.getElementById(id).value='');update()};
